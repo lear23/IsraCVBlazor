@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: IsraCVBlazor
+    runtime: docker
+    plan: free
+    repo: https://github.com/tuusuario/IsraCVBlazor
+    region: oregon
+    buildCommand: "dotnet publish -c Release -o out"
+    startCommand: "dotnet out/IsraCVBlazor.dll"
