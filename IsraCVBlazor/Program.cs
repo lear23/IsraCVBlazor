@@ -94,8 +94,8 @@ public static class Program
         builder.Services.AddHttpClient();
 
         // Configuración de credenciales para OpenAI
-        var token = builder.Configuration["GitHubModels:Token"]
-            ?? throw new InvalidOperationException("Missing configuration: GitHubModels:Token. See the README for details.");
+        var token = builder.Configuration["GitHubModels_Token"]
+            ?? throw new InvalidOperationException("Missing configuration: GitHubModels_Token. See the README for details.");
         var credential = new ApiKeyCredential(token);
         var openAIOptions = new OpenAIClientOptions()
         {
