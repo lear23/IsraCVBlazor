@@ -2,7 +2,6 @@
   - type: web
     name: IsraCV_Blazor
     runtime: docker
-    buildCommand: dotnet publish -c Release
-    startCommand: dotnet /app/IsraCVBlazor.dll
     dockerfilePath: Dockerfile
+    startCommand: dotnet /app/IsraCVBlazor.dll
     plan: free
