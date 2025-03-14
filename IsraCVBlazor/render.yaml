@@ -2,7 +2,7 @@
   - type: web
     name: IsraCV_Blazor
     runtime: docker
-    dockerfilePath: Dockerfile
+    dockerfilePath: IsraCVBlazor/Dockerfile
     startCommand: dotnet /app/IsraCVBlazor.dll
     envVars:
       - key: ASPNETCORE_URLS
