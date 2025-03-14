@@ -1,5 +1,6 @@
 # Use the official .NET 9 SDK image
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+
 # Set the working directory
 WORKDIR /app
 
@@ -14,7 +15,7 @@ COPY . .
 RUN dotnet publish "IsraCVBlazor/IsraCVBlazor.csproj" -c Release -o /app/publish
 
 # Use the official .NET ASP.NET runtime image for the final stage
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 WORKDIR /app
 EXPOSE 80
 
