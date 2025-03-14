@@ -1,28 +1,26 @@
-
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
-
-# This stage is used to build the service project
+# Use the official .NET 9 SDK image
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["IsraCVBlazor/IsraCVBlazor.csproj", "IsraCVBlazor/"]
-RUN dotnet restore "./IsraCVBlazor/IsraCVBlazor.csproj"
-COPY . .
-WORKDIR "/src/IsraCVBlazor"
-RUN dotnet build "./IsraCVBlazor.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# This stage is used to publish the service project to be copied to the final stage
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./IsraCVBlazor.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-
-# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
-FROM base AS final
+# Set the working directory
 WORKDIR /app
-COPY --from=publish /app/publish .
+
+# Copy the project file and restore the dependencies
+COPY ["IsraCVBlazor/IsraCVBlazor.csproj", "IsraCVBlazor/"]
+RUN dotnet restore "IsraCVBlazor/IsraCVBlazor.csproj"
+
+# Copy the rest of the files
+COPY . .
+
+# Build the app in Release configuration
+RUN dotnet publish "IsraCVBlazor/IsraCVBlazor.csproj" -c Release -o /app/publish
+
+# Use the official .NET ASP.NET runtime image for the final stage
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+WORKDIR /app
+EXPOSE 80
+
+# Copy the published files from the build stage
+COPY --from=build /app/publish .
+
+# Define the entrypoint to run your application
 ENTRYPOINT ["dotnet", "IsraCVBlazor.dll"]
