@@ -85,7 +85,7 @@
 <script>
         window.initializeNavbar = (dotNetHelper) => {
         window.addEventListener("scroll", () => {
-            const scrollY = Math.floor(window.scrollY);  // Asegura que scrollY sea un entero
+            const scrollY = Math.floor(window.scrollY);  
             dotNetHelper.invokeMethodAsync("HandleScroll", scrollY)
                 .catch(err => console.error("Error en HandleScroll: ", err));
         });

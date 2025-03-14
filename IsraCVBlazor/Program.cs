@@ -12,13 +12,6 @@ builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 builder.Services.AddScoped<TranslationService>();
 builder.Services.AddHttpClient();
 
-builder.Services.AddServerSideBlazor(options =>
-{
-    options.DetailedErrors = true;
-});
-
-
-
 
 // You will need to set the endpoint and key to your own values
 // You can do this using Visual Studio's "Manage User Secrets" UI, or on the command line:

@@ -15,7 +15,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #5D5D5D;
-    overflow:hidden;
+    overflow-x:hidden;
 }
 
     html::after {
@@ -52,7 +52,9 @@ h1:focus {
     font-size:2rem;
     color: #090909;
 }
-
+.text-chat{
+    padding:12px;
+}
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }
