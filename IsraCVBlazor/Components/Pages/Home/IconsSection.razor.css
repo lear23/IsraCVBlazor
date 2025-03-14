@@ -1,0 +1,28 @@
+﻿#icons-section {
+    background-color: #F5EEEE;
+    margin: 24px 0;
+    padding: 48px 16px;
+    overflow: hidden;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.icon-animation {
+    transform: translateY(-150px);
+    opacity: 0;
+    transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+
+.visible .icon-animation {
+    transform: translateY(0);
+    opacity: 1;
+}

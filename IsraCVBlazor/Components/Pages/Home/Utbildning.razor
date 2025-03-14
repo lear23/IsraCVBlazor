@@ -1,0 +1,57 @@
+﻿@page "/utbildning"
+@inject TranslationService TranslationService
+
+<div class="utbildning-container">
+    <h1 class="utbildning-title">
+        @TranslationService.T("education")
+    </h1>
+
+    <p class="utbildning-description">
+        @TranslationService.T("journey")
+        <img src="images/html5.svg" alt="Html icon" class="icon w-8 inline-block align-middle mx-1" />
+        @TranslationService.T("html")
+        <img src="images/css.svg" alt="Css icon" class="icon w-4 h-6 inline-block align-middle mx-1" />
+        @TranslationService.T("css")
+        <img src="images/js.svg" alt="Javascript icon" class="icon w-6 h-6 inline-block align-middle mx-1" />
+        @TranslationService.T("javascript"),
+        @TranslationService.T("self_taught")<br />
+        @TranslationService.T("college_experience")
+    </p>
+
+    <p class="utbildning-description">
+        @TranslationService.T("education_description")
+    </p>
+
+    <ul class="utbildning-list">
+        <li>@TranslationService.T("csharp")</li>
+        <li>@TranslationService.T("react_next")</li>
+        <li>@TranslationService.T("typescript_js")</li>
+        <li>@TranslationService.T("bootstrap_tailwind")</li>
+        <li>@TranslationService.T("docker_github_sql")</li>
+    </ul>
+
+    <br />
+
+    <p class="utbildning-description">
+        @TranslationService.T("education_practical_focus")
+    </p>
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(500);
+        StateHasChanged(); // Forzar actualización
+        TranslationService.OnLanguageChanged += OnLanguageChanged;
+    }
+
+    private void OnLanguageChanged()
+    {
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        TranslationService.OnLanguageChanged -= OnLanguageChanged;
+    }
+}

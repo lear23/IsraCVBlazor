@@ -1,0 +1,52 @@
+﻿
+.utbildning-container {
+    max-width: 1200px;
+    margin: 5rem auto;
+    padding: 16px;
+}
+
+.utbildning-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    color: #EFFA50;
+}
+
+.utbildning-description {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    font-size: 1.5rem;
+    color: #d5d5d5;
+}
+
+.utbildning-list {
+    list-style-type: disc;
+    list-style-position: inside;
+    font-size: 1.25rem;
+    padding-left: 1.5rem;
+    padding-top: 1rem;
+    color: #43F89B;
+}
+
+.icon {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+    .icon.w-8 {
+        width: 32px;
+        height: 32px;
+    }
+
+    .icon.w-4 {
+        width: 16px;
+        height: 24px;
+    }
+
+    .icon.w-6 {
+        width: 24px;
+        height: 24px;
+    }

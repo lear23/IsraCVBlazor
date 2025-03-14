@@ -1,0 +1,66 @@
+﻿.erfarenhet-container {
+    max-width: 1200px;
+    margin: 5rem auto;
+    padding: 16px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: #EFFA50;
+}
+
+.subtitle {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    font-weight:700;
+    color: #43F89B;
+}
+
+.text {
+    font-size: 1.25rem;
+    line-height: 1.75;
+    color:#fff;
+}
+
+.truck-container {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    margin-top: 40px;
+}
+
+.truck {
+    position: absolute;
+    width: 100px;
+}
+
+.truck-left {
+    animation: truck-left 5s linear infinite;
+}
+
+.truck-right {
+    animation: truck-right 5s linear infinite;
+    width: 150px;
+}
+
+@keyframes truck-left {
+    0% {
+        left: -100px;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes truck-right {
+    0% {
+        right: -100px;
+    }
+
+    100% {
+        right: 100%;
+    }
+}

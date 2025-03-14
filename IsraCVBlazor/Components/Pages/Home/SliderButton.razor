@@ -1,0 +1,18 @@
+﻿@inject NavigationManager NavigationManager
+
+<button class="slider-button" @onclick="HandleClick">
+    <span class="rocket left">🚀</span>
+    <div class="marquee">
+        <span class="marquee-text"> <span class="press">-- PRESS HERE --</span> YOU CAN TALK TO MY AI ASSISTANT AND ASK ANYTHING ABOUT ME AND MY CV <span class="press">-- PRESS HERE --</span> </span>
+    </div>
+    <span class="rocket right">🚀</span>
+</button>
+
+@code {
+    private void HandleClick()
+    {
+       
+        NavigationManager.NavigateTo("chat");
+    }
+}
+

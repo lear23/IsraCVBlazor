@@ -1,0 +1,161 @@
+﻿
+.header-container {
+    max-width: 1200px;
+    padding-top: 250px;
+    padding: 16px;
+}
+
+@media (max-width: 640px) {
+    .header-container {      
+        padding-top: 100px;
+       
+    }
+}
+
+
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px; 
+}
+
+@media (min-width: 640px) {
+    .header-content {
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+}
+
+
+.image-visible {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 2s ease-out, opacity 2s ease-out;
+    width: 250px;
+}
+
+.image-hidden {
+    transform: translateX(150%);
+    opacity: 0;
+    transition: transform 2s ease-out, opacity 2s ease-out;
+    width: 250px;
+}
+
+/* Ajustes de ancho para la imagen en diferentes tamaños */
+@media (min-width: 640px) {
+    .image-visible, .image-hidden {
+        width: 350px;
+        padding-top:100px;
+    }
+}
+
+@media (min-width: 768px) {
+    .image-visible, .image-hidden {
+        width: 500px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .image-visible, .image-hidden {
+        width: 600px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .image-visible, .image-hidden {
+        width: 700px;
+    }
+}
+
+/* Clases para el bloque de texto (efecto de entrada) */
+.text-visible {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 2s ease-out, opacity 2s ease-out;
+    text-align: left;
+}
+
+.text-hidden {
+    transform: translateX(-150%);
+    opacity: 0;
+    transition: transform 2s ease-out, opacity 2s ease-out;
+    text-align: left;
+}
+
+/* Estilo del texto principal */
+.header-text {
+    padding: 0 24px;
+    font-weight: bold;
+    line-height: 1.2;
+    font-size: 28px;
+    text-align: center;
+}
+
+@media (min-width: 640px) {
+    .header-text {
+        font-size: 40px;
+        text-align: left;
+    }
+}
+
+@media (min-width: 768px) {
+    .header-text {
+        font-size: 55px;
+        padding-top: 100px
+    }
+}
+
+@media (min-width: 1024px) {
+    .header-text {
+        font-size: 65px;
+        padding-top: 100px
+    }
+}
+
+@media (min-width: 1280px) {
+    .header-text {
+        font-size: 75px;
+        padding-top:100px
+    }
+}
+
+/* Clases para colores de texto */
+.text-white {
+    color: #ffffff;
+}
+
+.text-highlight {
+    color: #43F89B;
+}
+
+/* Utilidad para margen izquierdo */
+.ml-2 {
+    margin-left: 0.5rem;
+}
+
+
+.contact-button-container {
+    margin-top: 24px;
+}
+
+@media (min-width: 640px) {
+    .contact-button-container {
+        margin-top: 40px;
+    }
+}
+
+
+.button-visible {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 3.5s ease-out, opacity 3.5s ease-out;
+}
+
+.button-hidden {
+    transform: translateX(-150%);
+    opacity: 0;
+    transition: transform 3.5s ease-out, opacity 3.5s ease-out;
+}

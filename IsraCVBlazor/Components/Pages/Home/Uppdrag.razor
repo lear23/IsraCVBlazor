@@ -1,0 +1,71 @@
+﻿
+@inject TranslationService TranslationService
+
+<div class="uppdrag-container">
+    <h1 class="title">@TranslationService.T("latest_assignments")</h1>
+
+    <!-- Cobino -->
+    <div class="assignment-card">
+        <h3 class="assignment-title">@TranslationService.T("cobino")</h3>
+        <p class="text-uppdrag">@TranslationService.T("cobino_description")</p>
+        <div class="icon-grid">
+            <img class="icon" src="images/js.svg" alt="Javascript icon" />
+            <img class="icon" src="images/tailwind.svg" alt="Tailwind icon" />
+            <img class="icon" src="images/figma.svg" alt="Figma icon" />
+            <img class="icon" src="images/piranhacms.svg" alt="Piranha CMS icon" />
+            <img class="icon" src="images/docker.svg" alt="Docker icon" />
+            <img class="icon" src="images/react.svg" alt="React icon" />
+            <img class="icon" src="images/csharp.svg" alt="Csharp icon" />
+            <img class="icon" src="images/sql.svg" alt="SQL Server icon" />
+        </div>
+    </div>
+
+    <!-- Neoleaf -->
+    <div class="assignment-card">
+        <h3 class="assignment-title">@TranslationService.T("neoleaf")</h3>
+        <p class ="text-uppdrag">@TranslationService.T("neoleaf_description")</p>
+        <div class="icon-grid">
+            <img class="icon" src="images/js.svg" alt="Javascript icon" />
+            <img class="icon" src="images/csharp.svg" alt="Csharp icon" />
+            <img class="icon" src="images/tailwind.svg" alt="Tailwind icon" />
+            <img class="icon" src="images/figma.svg" alt="Figma icon" />
+            <img class="icon" src="images/piranhacms.svg" alt="Piranha CMS icon" />
+            <img class="icon" src="images/docker.svg" alt="Docker icon" />
+            <img class="icon" src="images/blazor.svg" alt="Blazor icon" />
+        </div>
+    </div>
+
+    <!-- Linervent -->
+    <div class="assignment-card">
+        <h3 class="assignment-title">@TranslationService.T("linervent")</h3>
+        <p class="text-uppdrag">@TranslationService.T("linervent_description")</p>
+        <div class="icon-grid">
+            <img class="icon" src="images/js.svg" alt="Javascript icon" />
+            <img class="icon" src="images/tailwind.svg" alt="Tailwind icon" />
+            <img class="icon" src="images/figma.svg" alt="Figma icon" />
+            <img class="icon" src="images/piranhacms.svg" alt="Piranha CMS icon" />
+            <img class="icon" src="images/csharp.svg" alt="Csharp icon" />
+            <img class="icon" src="images/docker.svg" alt="Docker icon" />
+            <img class="icon" src="images/vue.svg" alt="Vue icon" />
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(500);
+        StateHasChanged(); // Forzar actualización
+        TranslationService.OnLanguageChanged += OnLanguageChanged;
+    }
+
+    private void OnLanguageChanged()
+    {
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        TranslationService.OnLanguageChanged -= OnLanguageChanged;
+    }
+}

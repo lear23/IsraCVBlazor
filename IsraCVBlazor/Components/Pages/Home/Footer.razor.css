@@ -1,0 +1,91 @@
+﻿/* Fondo y contenedor principal */
+.footer-bg {
+    background-color: #4A4A4A;
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem; /* py-12 = 3rem, px-6 = 1.5rem */
+}
+
+/* Flex para logo y botón */
+.footer-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (min-width: 640px) {
+    .footer-flex {
+        flex-direction: row;
+    }
+}
+
+/* Logo */
+.footer-logo {
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .footer-logo {
+        margin-bottom: 0;
+        width: 150px;
+    }
+}
+
+/* Enlace LinkedIn */
+.footer-link {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.footer-link-icon {
+    width: 2rem; /* Aproximadamente 2rem */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Grid de contacto */
+.footer-grid {
+    display: grid;
+    gap: 2rem; /* Aproximadamente 2rem */
+    padding-top: 4rem; /* pt-16 = 4rem */
+}
+
+@media (min-width: 640px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Ítems del grid */
+.footer-grid-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Iconos para teléfono y dirección */
+.footer-icon {
+    width: 2rem; /* Aproximadamente 2rem */
+    margin-right: 0.75rem;
+}
+
+/* Icono para correo (más pequeño) */
+.footer-icon-small {
+    width: 1.5rem; /* Aproximadamente 1.5rem */
+    margin-right: 0.75rem;
+}
+
+/* Texto de contacto */
+.footer-text {
+    color: white;
+}

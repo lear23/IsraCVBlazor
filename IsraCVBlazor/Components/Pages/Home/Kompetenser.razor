@@ -1,0 +1,52 @@
+﻿
+
+<div id="kompetenser" class="container kompetenser-container @VisibilityClass">
+    <h1 class="kompetenser-title">
+        @TranslationService.T("my_skills")
+    </h1>
+
+    <h3 class="kompetenser-subtitle">
+        @TranslationService.T("strong_knowledge")
+    </h3>
+
+    <p class="kompetenser-text">
+        @TranslationService.T("journey")
+        <br /><br />
+        @TranslationService.T("neoleaf_experience")
+        <br /><br />
+        @TranslationService.T("Kunskaper")
+        <br /><br />
+        @TranslationService.T("learning")
+    </p>
+</div>
+
+@code {
+    private bool isVisible = false;
+
+    // Clase que controla la visibilidad del componente
+    private string VisibilityClass => isVisible ? "visible" : "hidden";
+
+    // Se activa el cambio de visibilidad cuando el componente es inicializado
+    protected override async Task OnInitializedAsync()
+    {
+        // Esperamos 500ms antes de mostrar el contenido
+        await Task.Delay(500);
+        isVisible = true;
+        StateHasChanged(); // Forzar actualización del componente
+
+        // Nos suscribimos al evento de cambio de idioma
+        TranslationService.OnLanguageChanged += OnLanguageChanged;
+    }
+
+    // Método que se ejecuta cuando el idioma cambia
+    private void OnLanguageChanged()
+    {
+        StateHasChanged(); // Forzar actualización del componente cuando cambia el idioma
+    }
+
+    // Nos desuscribimos cuando el componente se destruye
+    public void Dispose()
+    {
+        TranslationService.OnLanguageChanged -= OnLanguageChanged;
+    }
+}

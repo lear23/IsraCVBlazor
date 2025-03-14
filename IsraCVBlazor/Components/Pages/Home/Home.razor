@@ -1,0 +1,27 @@
+﻿@page "/"
+
+
+<header>
+    <Navbar />
+    <SliderButton />
+</header>
+<main>
+
+    <Header />
+    <Kompetenser />
+    <IconsSection />
+    <Erfarenhet />
+    <Uppdrag />
+    <Utbildning />
+    <Intressen />
+</main>
+<footer>
+    <Footer />
+</footer>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await TranslationService.LoadTranslations("sv");
+    }
+}

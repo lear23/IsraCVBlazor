@@ -1,0 +1,47 @@
+﻿.slider-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(45deg, #ff6b6b, #feca57);
+    border: none;
+    margin-top:90px;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 30px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+}
+
+.rocket {
+    font-size: 1.5rem;
+}
+
+.marquee {
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    width: 100%;
+}
+
+.marquee-text {
+    display: inline-block;
+    animation: marquee 12s linear infinite;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}

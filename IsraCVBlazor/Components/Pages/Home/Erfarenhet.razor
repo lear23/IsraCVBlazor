@@ -1,0 +1,53 @@
+﻿@page "/erfarenhet"
+@inject TranslationService TranslationService
+
+<div id="erfarenhet" class="erfarenhet-container">
+    <h1 class="title">@TranslationService.T("work_experience")</h1>
+
+    <h3 class="subtitle">
+        @TranslationService.T("web_consultant")<br />
+        @TranslationService.T("current_job")
+    </h3>
+
+    <p class="text">
+        @TranslationService.T("web_consultant_description")
+    </p>
+
+    <h3 class="subtitle">
+        @TranslationService.T("truck_driver")<br />
+        @TranslationService.T("truck_driver_duration")
+    </h3>
+
+    <p class="text">
+        @foreach (var line in TranslationService.T("truck_driver_description").Split('\n'))
+        {
+        <p>@line</p>
+        }
+    </p>
+
+    <div class="truck-container">
+        <img src="images/Truck.svg" alt="A truck image" class="truck truck-left" />
+        <img src="images/Truck2.svg" alt="A truck image" class="truck truck-right" />
+    </div>
+
+    <ContactButton Email="learsi75@hotmail.com" Label="@TranslationService.T("contact_me")" />
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(500);
+        StateHasChanged(); // Forzar actualización
+        TranslationService.OnLanguageChanged += OnLanguageChanged;
+    }
+
+    private void OnLanguageChanged()
+    {
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        TranslationService.OnLanguageChanged -= OnLanguageChanged;
+    }
+}

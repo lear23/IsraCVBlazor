@@ -1,0 +1,16 @@
+﻿@inject IJSRuntime JSRuntime
+
+<button  @onclick="OpenEmailClient" class="contact-button">
+    @Label
+</button>
+
+@code {
+    [Parameter] public string Email { get; set; }
+    [Parameter] public string Label { get; set; }
+
+    private async Task OpenEmailClient()
+    {
+        var mailto = $"mailto:{Email}";
+        await JSRuntime.InvokeVoidAsync("open", mailto);
+    }
+}

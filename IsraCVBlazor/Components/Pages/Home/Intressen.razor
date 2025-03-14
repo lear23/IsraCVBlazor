@@ -1,0 +1,72 @@
+﻿@page "/intressen"
+@inject TranslationService TranslationService
+
+<div id="intresse" class="intresse-container">
+    <h1 class="intresse-title">
+        @TranslationService.T("interests_main_title")
+    </h1>
+
+    <!-- Sektion 1 -->
+    <div class="section bg-green-500">
+        <div class="intresse-content">
+            <div class="intresse-text">
+                <h1 class="section-title">
+                    @TranslationService.T("interest_section1_title")
+                </h1>
+                <p class="section-text">
+                    @TranslationService.T("interest_section1_text")
+                </p>
+            </div>
+            <img src="images/screenVS.svg" alt="Visual studio screen icon" class="section-image" />
+        </div>
+    </div>
+
+    <!-- Sektion 2 -->
+    <div class="section bg-green-500">
+        <div class="intresse-content">
+            <img src="images/running.svg" alt="Running icon" class="section-image" />
+            <div class="intresse-text">
+                <h1 class="section-title">
+                    @TranslationService.T("interest_section2_title")
+                </h1>
+                <p class="section-text">
+                    @TranslationService.T("interest_section2_text")
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sektion 3 -->
+    <div class="section bg-green-500">
+        <div class="intresse-content">
+            <div class="intresse-text">
+                <h1 class="section-title">
+                    @TranslationService.T("interest_section3_title")
+                </h1>
+                <p class="section-text">
+                    @TranslationService.T("interest_section3_text")
+                </p>
+            </div>
+            <img src="images/ski.svg" alt="Ski icon" class="section-image" />
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(500);
+        StateHasChanged(); // Forzar actualización
+        TranslationService.OnLanguageChanged += OnLanguageChanged;
+    }
+
+    private void OnLanguageChanged()
+    {
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        TranslationService.OnLanguageChanged -= OnLanguageChanged;
+    }
+}

@@ -1,0 +1,79 @@
+﻿@inject IJSRuntime JS
+
+
+<div id="icons-section" class="@(isVisible ? "visible" : "")">
+    <div class="container">
+        @foreach (var (icon, index) in Group1.Select((icon, index) => (icon, index)))
+        {
+            <img src="images/@icon" alt="Icon @index" class="icon-animation" style="animation-delay: @(index * 200)ms;" />
+        }
+        @foreach (var (icon, index) in Group2.Select((icon, index) => (icon, index)))
+        {
+            <img src="images/@icon" alt="Icon @index" class="icon-animation" style="animation-delay: @(index * 200 + 100)ms;" />
+        }
+        @foreach (var (icon, index) in Group3.Select((icon, index) => (icon, index)))
+        {
+            <img src="images/@icon" alt="Icon @index" class="icon-animation" style="animation-delay: @(index * 200 + 200)ms;" />
+        }
+        @foreach (var (icon, index) in Group4.Select((icon, index) => (icon, index)))
+        {
+            <img src="images/@icon" alt="Icon @index" class="icon-animation" style="animation-delay: @(index * 200 + 300)ms;" />
+        }
+    </div>
+</div>
+
+
+
+@code {
+    private bool isVisible = false; 
+    private DotNetObjectReference<IconsSection>? dotNetRef; 
+
+  
+    private List<string> Group1 = new() { "umbraco.svg", "piranhacms.svg", "netcore.svg", "blazor.svg", "csharp.svg" };
+    private List<string> Group2 = new() { "wpf.svg", "maui.svg", "docker.svg", "sql.svg" };
+    private List<string> Group3 = new() { "css.svg", "html5.svg", "js.svg", "ts.svg", "react.svg" };
+    private List<string> Group4 = new() { "giticon.svg", "bootstrap.svg", "nextjs.svg", "tailwind.svg", "figma.svg" };
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            dotNetRef = DotNetObjectReference.Create(this); 
+            await JS.InvokeVoidAsync("detectScroll", dotNetRef); 
+        }
+    }
+
+    [JSInvokable] 
+    public void HandleScroll()
+    {
+        isVisible = true;
+        StateHasChanged(); 
+    }
+
+    public void Dispose()
+    {
+        dotNetRef?.Dispose(); 
+    }
+}
+
+<script>
+    window.detectScroll = (dotNetHelper) => {
+        const handleScroll = () => {
+            let section = document.getElementById("icons-section");
+            if (section) {
+                let rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.3) {
+                    if (dotNetHelper) {
+                        dotNetHelper.invokeMethodAsync("HandleScroll")
+                            .catch(err => console.error("Error en invokeMethodAsync:", err));
+                    }
+                    window.removeEventListener("scroll", handleScroll);
+                }
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+    };
+
+
+</script>

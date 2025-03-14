@@ -1,0 +1,94 @@
+﻿@inject IJSRuntime JSRuntime
+
+<nav class="navbar @(showNavbar ? "visible" : "hidden")">
+    <div class="container">
+
+        <!-- Logo -->
+        <a href="#home">
+            <img src="images/IsraLogo.svg" alt="Logo" class="logo" />
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="menu">
+            <a href="#kompetenser" class="menu-item">@TranslationService.T("skills")</a>
+            <a href="#erfarenhet" class="menu-item">@TranslationService.T("experience")</a>
+            <a href="#utbildning" class="menu-item">@TranslationService.T("education")</a>
+            <a href="#intresse" class="menu-item">@TranslationService.T("interests")</a>
+        </div>
+
+        <!-- Language Switch -->
+        <div class="language-switch">
+            <button @onclick="@(() => ChangeLanguage("sv"))">
+                <img class="flag" src="images/sverieflaga.svg" />
+            </button>
+            <button @onclick="@(() => ChangeLanguage("en"))">
+                <img class="flag" src="images/Engflaga.svg" />
+            </button>
+            <button @onclick="@(() => ChangeLanguage("es"))">
+                <img class="flag" src="images/spaflaga.svg" />
+            </button>
+        </div>
+
+        <!-- Hamburger Menu -->
+        <button class="hamburger" @onclick="ToggleMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu @(isMenuOpen ? "open" : "")">
+        <a href="#kompetenser" class="menu-item">@TranslationService.T("skills")</a>
+        <a href="#erfarenhet" class="menu-item">@TranslationService.T("experience")</a>
+        <a href="#utbildning" class="menu-item">@TranslationService.T("education")</a>
+        <a href="#intresse" class="menu-item">@TranslationService.T("interests")</a>
+    </div>
+</nav>
+
+@code {
+    private bool showNavbar = true;
+    private bool isMenuOpen = false;
+    private int lastScrollY = 0;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("initializeNavbar", DotNetObjectReference.Create(this));
+        }
+    }
+
+    private async Task ChangeLanguage(string lang)
+    {
+        await TranslationService.LoadTranslations(lang);
+        StateHasChanged();
+    }
+
+    private void ToggleMenu()
+    {
+        isMenuOpen = !isMenuOpen;
+    }
+
+    [JSInvokable]
+    public void HandleScroll(int scrollY)
+    {
+        showNavbar = scrollY < lastScrollY;
+        lastScrollY = scrollY;
+        StateHasChanged();
+    }
+}
+
+
+
+<script>
+        window.initializeNavbar = (dotNetHelper) => {
+        window.addEventListener("scroll", () => {
+            const scrollY = Math.floor(window.scrollY);  // Asegura que scrollY sea un entero
+            dotNetHelper.invokeMethodAsync("HandleScroll", scrollY)
+                .catch(err => console.error("Error en HandleScroll: ", err));
+        });
+    };
+
+</script>

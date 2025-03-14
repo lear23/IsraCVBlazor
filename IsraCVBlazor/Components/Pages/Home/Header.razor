@@ -1,0 +1,62 @@
+﻿@using Microsoft.JSInterop
+@inject IJSRuntime JSRuntime
+
+
+<div class="container">
+    
+    <div class=" header-container">
+      
+        <div class="header-content">
+            <img src="images/Screen.svg" alt="visual studio screen" class="@ImageClass" />
+
+            <div class="@TextClass">
+                <div class="header-text">
+                    <span>
+                        <span class="text-white">@t("fullstack_developer")</span>
+                    </span>
+                    <span>
+                        <span class="text-white">@t("within")</span>
+                        <span class="text-highlight ml-2">@t("dotnet")</span>
+                    </span>
+                    <span>
+                        <span class="text-highlight">@t("and")</span>
+                        <span class="text-white ml-2">@t("other_frameworks")</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-button-container @ButtonClass">
+            <ContactButton Email="learsi75@hotmail.com" Label="@t("contact_me")" />
+        </div>
+    </div>
+</div>
+
+@code {
+    // Método para obtener la traducción de una clave
+    private string t(string key) => TranslationService.T(key);
+
+    private bool isVisible = false;
+    private string ImageClass => isVisible ? "image-visible" : "image-hidden";
+    private string TextClass => isVisible ? "text-visible" : "text-hidden";
+    private string ButtonClass => isVisible ? "button-visible" : "button-hidden";
+
+    protected override async Task OnInitializedAsync()
+    {
+        TranslationService.OnLanguageChanged += HandleLanguageChanged; // Suscribirse al evento de cambio de idioma
+        await Task.Delay(500);
+        isVisible = true;
+    }
+
+    // Método que se ejecuta cuando cambia el idioma
+    private void HandleLanguageChanged()
+    {
+        StateHasChanged();  // Forzar actualización del componente
+    }
+
+    // Se ejecuta cuando el componente se destruye para evitar memory leaks
+    public void Dispose()
+    {
+        TranslationService.OnLanguageChanged -= HandleLanguageChanged;  // Desuscribirse del evento
+    }
+}
