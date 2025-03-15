@@ -22,6 +22,7 @@
 
 .assistant-message-text {
     grid-column-start: 2;
+    color:#fff;
 }
 
 .assistant-message-icon {
